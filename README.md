@@ -1,88 +1,86 @@
-README.md（Xibw V0.2）
-markdown
-コピーする
-編集する
-# Xibw - Discord Bot for X API Updates  
+Xibw Bot
+Xibw Botは、X（旧Twitter）APIと連携したDiscord Botです。Xのアカウントやハッシュタグのデータをリアルタイムで取得し、Discordに通知する機能を提供します。また、YouTube、Instagram、Twitchのリンクにも対応し、関連情報を自動で取得して投稿します。
 
-Xibwは、X（旧Twitter）のAPI更新を自動で監視し、Discordに通知するBotです。  
-また、YouTube・Instagram・Twitchリンクの対応も予定されています。  
+機能一覧
+X API連携: Xアカウント、ハッシュタグ、フォロワー、リポストの監視
 
-## 📌 **主な機能 (V0.2)**
-- X API の状態を **60秒ごと** にチェック
-- Tweepy のバージョンを **1日ごと** に確認
-- APIの異常を検知すると **Discordに通知**
-- `/status` コマンドで手動でAPIの状態を確認可能  
+YouTubeリンク対応: YouTubeリンクを自動的に認識して処理
 
-## 📂 **プロジェクト構成**
-Xibw/ ├── src/ │ ├── main.ts # Denoのエントリーポイント │ ├── config.ts # 設定ファイル（APIキーなど） │ ├── discord_bot.ts # Discord Botのロジック │ ├── twitter_api.ts # X APIのロジック │ ├── updater.ts # API自動更新機能 │ ├── utils.ts # ユーティリティ関数 ├── .gitignore ├── deno.json # Deno設定ファイル ├── README.md
+Instagramリンク対応: Instagramリンクを自動的に認識して処理
 
+Twitchリンク対応: Twitchリンクを自動的に認識して処理
+
+Discord Bot: コマンドを使ってAPIの状態やエラーを確認可能
+
+自動API更新機能: 60秒ごとにX APIをチェックし、Tweepyのバージョンも毎日確認
+
+必要なもの
+Deno Deploy: Deno環境でホスティング
+
+GitHub: リポジトリ管理
+
+Discord Bot Token: Discordにボットを追加するためのトークン
+
+X APIキー: X（Twitter）APIのアクセス認証情報
+
+環境変数: Botの動作に必要な認証情報を環境変数で設定
+
+インストール
+1. 必要なツールのインストール
+Deno: Denoインストール
+
+GitHub: GitHubアカウントを作成し、リポジトリをクローンします。
+
+2. リポジトリのクローン
 bash
 コピーする
 編集する
+git clone https://github.com/your-username/xibw-bot.git
+cd xibw-bot
+3. 必要な環境変数を設定
+.env ファイルを作成して、以下の環境変数を追加します。
 
-## 🚀 **セットアップ**
-### 1️⃣ **GitHub からコードを取得**
-```sh
-git clone https://github.com/yourusername/Xibw.git
-cd Xibw
-2️⃣ 環境変数の設定
-.env ファイルを作成し、以下の情報を追加：
-
-ini
+env
 コピーする
 編集する
-DISCORD_TOKEN=your_discord_token
+DISCORD_TOKEN=your_discord_bot_token
 TWITTER_API_KEY=your_twitter_api_key
 TWITTER_API_SECRET=your_twitter_api_secret
 ACCESS_TOKEN=your_access_token
 ACCESS_SECRET=your_access_secret
-3️⃣ Deno をインストール
-Deno公式サイト からDenoをインストール。
-または以下のコマンドでインストール：
+DISCORD_WEBHOOK_URL=your_discord_webhook_url
+4. Deno Deployでデプロイ
+Deno Deployにサインイン
 
-sh
-コピーする
-編集する
-curl -fsSL https://deno.land/x/install/install.sh | sh
-4️⃣ Bot を起動
-sh
-コピーする
-編集する
-deno run --allow-net --allow-env src/main.ts
-🔧 Deno Deploy でのデプロイ
-Deno Deploy にアクセスし、新しいプロジェクトを作成
+新しいプロジェクトを作成し、GitHubリポジトリを連携
 
-GitHubリポジトリを接続し、自動デプロイを設定
+プロジェクトに環境変数を設定
 
-環境変数をDeno Deployの "Settings" に追加
+デプロイを実行
 
-デプロイボタンをクリック！
+5. Discord Botを起動
+Deno DeployにてBotが動作していることを確認します。
+Botが正常に動作している場合、/status コマンドでBotの状態を確認できます。
 
-⚙ コマンド一覧
-コマンド	説明
-/status	X APIとTweepyの状態を確認
-/X user [username/@/URL] [class]	Xのユーザーを登録
-/X hash [word] [class]	ハッシュタグを登録
-/X start [ALL/class]	特定のクラスの監視を開始
-/X stop [ALL/class]	監視を停止
-/X delete [class]	クラスを削除
-🛠 今後の予定
-✅ V0.2: API自動更新
-✅ V0.5: Xアカウント連携機能追加
-✅ V1: Xのデータ読み込み機能
-✅ V2: 投稿機能追加
-✅ V3: ハート、フォロー、リポスト機能
-✅ V4: YouTubeリンク対応
-✅ V5: Instagramリンク対応
-✅ V6: Twitchリンク対応
+コマンド
+/status: APIの状態を手動で確認
 
-📜 ライセンス
-MIT License
+/X [user/u] [username/@/URL] [class]: Xアカウントを登録
 
-📢 ご意見・バグ報告
-不具合報告や機能の提案があれば、Issues で報告してください！
+/X [hash/h] [word] [class]: Xハッシュタグを登録
 
-コピーする
-編集する
+/X [start/sa] [ALL/class]: APIの自動更新を開始
 
-これでどうでしょう？追加したい内容があれば教えてください！💡
+/X [stop/so] [ALL/class]: APIの自動更新を停止
+
+/X [delete/d] [class]: 登録したユーザー、ハッシュタグを削除
+
+デプロイ後の動作確認
+Discord Botが正常に起動しているか確認
+
+APIエラー発生時にDiscord通知が届くことを確認
+
+注意事項
+配布は行っていません。このBotは個人使用のために作成されたものです。
+
+そのため、サポートや問い合わせ対応は行っていません。
