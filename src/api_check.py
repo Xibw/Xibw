@@ -1,7 +1,7 @@
 import tweepy
 import time
 from config.settings import API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_SECRET
-from src.notifier import send_discord_notification
+from src.discord_bot import send_discord_notification
 
 # Tweepyのセットアップ
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
@@ -15,7 +15,7 @@ X_ACCOUNTS = {
 }
 
 # Xアカウントの状態をチェック
-def check_x_accounts():
+async def check_x_accounts():
     for username, data in X_ACCOUNTS.items():
         try:
             user = api.get_user(screen_name=username)
@@ -26,18 +26,18 @@ def check_x_accounts():
             # 更新があった場合通知
             if tweet != data["last_tweet"]:
                 data["last_tweet"] = tweet
-                send_discord_notification(f"📢 {username} の新しいツイート: {tweet}")
+                await send_discord_notification(channel_id=123456789012345678, message=f"📢 {username} の新しいツイート: {tweet}")
 
             if follower_count != data["last_follower_count"]:
                 data["last_follower_count"] = follower_count
-                send_discord_notification(f"📢 {username} のフォロワー数が {follower_count} に更新されました。")
+                await send_discord_notification(channel_id=123456789012345678, message=f"📢 {username} のフォロワー数が {follower_count} に更新されました。")
 
         except Exception as e:
             print(f"❌ エラーが発生しました: {e}")
-            send_discord_notification(f"❌ {username} の情報取得に失敗しました: {e}")
+            await send_discord_notification(channel_id=123456789012345678, message=f"❌ {username} の情報取得に失敗しました: {e}")
 
 # 15秒ごとにXアカウントをチェック
-def start_account_check():
+async def start_account_check():
     while True:
-        check_x_accounts()
-        time.sleep(15)
+        await check_x_accounts()
+        await asyncio.sleep(15)
