@@ -31,7 +31,5 @@ Xibw Botは、X（旧Twitter）APIと連携したDiscord Botです。Xのアカ�
 - APIエラー発生時にDiscord通知が届くことを確認
 
 ## 注意事項
-- **配布は行っていません**。このBotは個人使用のために作成されたものです。
-- そのため、サポートや問い合わせ対応は行っていません。
-
+- **配布は行っていません**。このBotはhttps://discord.com/oauth2/authorize?client_id=1356841089193087016から利用はできます。
 ---
