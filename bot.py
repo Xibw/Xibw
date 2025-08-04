@@ -1,17 +1,23 @@
+import os
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
 
+# 環境変数読み込み
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+# Botの設定
 intents = discord.Intents.default()
-intents.message_content = True
+bot = commands.Bot(command_prefix="/", intents=intents)
 
-bot = commands.Bot(command_prefix='/X ', intents=intents)
-
+# 起動時に表示
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user}')
+    print(f"[起動成功] Bot名: {bot.user.name} | ID: {bot.user.id}")
 
-@bot.command()
-async def test(ctx):
-    await ctx.send("This is test program")
+# コマンド読み込み
+bot.load_extension("commands.ping")
 
-bot.run('YOUR_DISCORD_TOKEN')  # 実際のBotトークンに置き換える
+# Bot開始
+bot.run(TOKEN)
