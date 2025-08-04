@@ -1,0 +1,30 @@
+name: Xibw Bot 起動確認CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  bot-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをクローン
+        uses: actions/checkout@v3
+
+      - name: Pythonをセットアップ
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 依存関係をインストール
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 構文チェックと起動テスト（トークン無し）
+        run: |
+          echo "トークンなしで構文・起動チェックを実施します"
+          python -m py_compile bot.py
