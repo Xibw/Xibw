@@ -3,7 +3,7 @@
 Xibw Botは、X（旧Twitter）APIと連携したDiscord Botです。Xのアカウントやハッシュタグのデータをリアルタイムで取得し、Discordに通知する機能を提供します。また、YouTube、Instagram、Twitchのリンクにも対応し、関連情報を自動で取得して投稿します。
 
 ## 公式
-[![Discord](https://img.shields.io/badge/chat-on%20discord-blue.svg)](https://discord.gg/bfR9GNGxgM)
+[![Discord](https://img.shields.io/badge/%20discord-blue.svg)](https://discord.gg/bfR9GNGxgM)
 
 ## 注意事項
 - **配布は行っていません**。このBotは[![DiscordBot](https://img.shields.io/badge/Bot-on%20discord-blue.svg)](https://discord.com/oauth2/authorize?client_id=1356841089193087016) から利用はできます。
